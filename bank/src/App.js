@@ -1,9 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import Menu from './components/Menu'
+import About from './components/About';
+import Instructions from './components/Instructions';
 
 function App() {
   return (
-      ""
+      <section>
+        <Menu></Menu>
+        <About></About>
+        <Instructions></Instructions>
+      </section>
   );
 }
 

@@ -1,5 +1,62 @@
+:root{
+  --contrastColor:#0EA2E3;
+  --fontColor:#ffffff;
+  
+}
 *{
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
+}
+
+.headerContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100vw;
+  background-color: var(--contrastColor);
+  color: var(--fontColor);
+}
+
+.pageName,.logoImageStyle{
+  margin: 8px 0px 10px 20px;
+}
+
+.navContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100vw;
+  padding-bottom: 9px;
+}
+
+.linkStyle{
+  text-decoration: none;
+  color: var(--fontColor);
+  font-weight: 600;
+}
+
+.sectionContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10%;
+  width: 100vw;
+
+}
+
+.textContainer{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px 10%;
+}
+
+.listStyle{
+  margin: 15px 40px;
+  list-style:disc;
+}
+
+.structionItem{
+  margin-bottom: 15px;
 }
