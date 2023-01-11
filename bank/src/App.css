@@ -60,3 +60,34 @@
 .structionItem{
   margin-bottom: 15px;
 }
+
+.btnContianerStyle{
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.searchAreaContainer{
+  display: flex;
+  flex-direction:  column;
+  margin-bottom: 25px;
+
+}
+
+.inputTxtStyle{
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.buttonsStyle{
+  height:40px;
+  background-color: var(--contrastColor);
+  color: var(--fontColor);
+  border: 1px solid var(--contrastColor);
+  border-radius: 7px;
+  font-weight: 800;
+  margin-top: 8px;
+}
