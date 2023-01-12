@@ -11,7 +11,7 @@ function Instructions(){
                 <p className='txtStyle'> Cada pesquisa tem um tipo de pesquisa. Como por exemplo:</p>
                 <ul className='listStyle'>
                     <li className='structionItem'>Para pesquisar bancos você pode escolher filtrar por nome ou codigo do banco.</li>
-                    <li className='structionItem'>Para CEP você precisa pesquisar pelo nome da rua e cidade devido a grande quantidade de dados.</li>
+                    <li className='structionItem'>Para dados a partir do CEP digite o CEP que deseja buscar informações e lhe retornarei o nome da rua, bairro, cidade e estado.</li>
                     <li className='structionItem'>Para verificar quais locais usam um determinado DDD basta colocar o numero do DDD para ter o resultado dos locais.</li>
                 </ul>
             </div>

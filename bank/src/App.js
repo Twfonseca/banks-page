@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [banks, setBanks]=useState([])
-  const [ceps, setCeps]=useState([])
-  const [ddd, setDdd]=useState([])
   const bankModel ={name:''}
   const cepModel={street:'', city:''}
   const codeStateModel={cstate:''}
@@ -15,6 +13,7 @@ function App() {
   const  [cepForm, setCepForm]=useState(cepModel)
   const  [dddForm, setDddForm]=useState(codeStateModel)
   const [bankResult, setBankResult]=useState({})
+  const [cepResult, setCepResult]=useState({})
 
   useEffect(()=>{
     findBank()  
@@ -30,7 +29,7 @@ function App() {
   const cepEvent= (event)=>{
     let name= event.target.name
     let value= event.target.value
-    setCepForm({...cepForm,[name]:value})
+    setCepForm({[name]:value})
   }
 
   const dddEvent= (event)=>{
@@ -66,6 +65,20 @@ const bankSearch =()=>{
    }
   }
 
+async function findCep (){
+  let cepToSearch= cepForm.cep
+  let searchUrl= "https://brasilapi.com.br/api/cep/v2/"+cepToSearch
+  await fetch(searchUrl).then((resp)=>{return resp.json()}).then((data)=>{ setCepResult(data) })
+  await showCepResult()
+}
+  async function showCepResult(){
+    let streetResult=document.getElementById('street')
+    let ngbrhdResult=document.getElementById('neighborhood')          
+    let stateCodeResult=document.getElementById('stateCode')
+    streetResult.innerText= cepResult.street
+    ngbrhdResult.innerText= cepResult.neighborhood
+    stateCodeResult.innerText= cepResult.state
+  }
 
 
 
@@ -88,11 +101,12 @@ const bankSearch =()=>{
               
             </div>
             <div className='searchAreaContainer'>
-              <label htmlFor='streetName'>Nome da rua:</label>
-              <input className='inputTxtStyle' name='street'type="text" id='streetName' placeholder='Exemplo: Rua Luiz de Luizio 'onChange={cepEvent}></input>
-              <label htmlFor='cityName'>Nome da cidade:</label>
-              <input className='inputTxtStyle' name='city' type="text" id='cityName' placeholder='Exemplo: Bluemenau'onChange={cepEvent}></input>
-              <button className='buttonsStyle'>Pesquisar CEP</button>
+              <label htmlFor='cityName'>CEP:</label>
+              <input className='inputTxtStyle' name='cep' type="text" id='cepCode' placeholder='Exemplo:12345123'onChange={cepEvent}></input>
+              <p id='street'></p>
+              <p id='neighborhood'></p>
+              <p id='stateCode'></p>
+              <button className='buttonsStyle' onClick={findCep}>Pesquisar CEP</button>
             </div>
             <div className='searchAreaContainer'>
               <label htmlFor='dddNumber'>Numero do DDD:</label>
@@ -106,3 +120,4 @@ const bankSearch =()=>{
 }
 
 export default App;
+
