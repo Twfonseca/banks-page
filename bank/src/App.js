@@ -2,23 +2,36 @@ import './App.css';
 import Menu from './components/Menu'
 import About from './components/About';
 import Instructions from './components/Instructions';
-import { useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
+
+/* CRIAR UM MAP COM IS ITEMS E PASSAR NA UL  : https://www.youtube.com/watch?v=6iJABCS34Jk  */
 
 function App() {
-  const [banks, setBanks]=useState([])
   const bankModel ={name:''}
   const cepModel={street:'', city:''}
   const codeStateModel={cstate:''}
-  const  [bankForm, setBankForm]=useState(bankModel)
-  const  [cepForm, setCepForm]=useState(cepModel)
-  const  [dddForm, setDddForm]=useState(codeStateModel)
+  const [banks, setBanks]=useState([])
+  const [bankForm, setBankForm]=useState(bankModel)
+  const [cepForm, setCepForm]=useState(cepModel)
+  const [dddForm, setDddForm]=useState(codeStateModel)
   const [bankResult, setBankResult]=useState({})
   const [cepResult, setCepResult]=useState({})
+  const [dddResult, setDddResult]=useState({})
+  const [dddArrayResult, setdddArrayResult]=useState([])
+  let bankIspb= document.getElementById("ispb")
+  let bankCode= document.getElementById("code")
+  let bankFullName=document.getElementById("fullName")
+  let streetResult=document.getElementById('street')
+  let ngbrhdResult=document.getElementById('neighborhood')          
+  let stateCodeResult=document.getElementById('stateCode')
+  let dddStateCode = document.getElementById('stateDDDCode')   
+  let citiesDDD = document.getElementById('listCitiesCode')
+
+ 
 
   useEffect(()=>{
     findBank()  
   })
-
 
   const bankEvent= (event)=>{
     let name= event.target.name
@@ -48,7 +61,6 @@ const bankSearch =()=>{
     let findedBank= banks.find(bank=>bank.fullName === bankForm.bank)
     setBankResult(findedBank)
    if(bankResult.ispb !== undefined && bankResult.code !== undefined && bankResult.fullName !== undefined){
-      let bankIspb= document.getElementById("ispb")
       let bankCode= document.getElementById("code")
       let bankFullName=document.getElementById("fullName")
       bankIspb.innerText="Ispb do banco: "+bankResult.ispb
@@ -56,9 +68,7 @@ const bankSearch =()=>{
       bankFullName.innerText="Nome do banco: "+bankResult.fullName
     setBankResult({})
    }else{
-    let message=document.getElementById("ispb")
-    let bankCode= document.getElementById("code")
-    let bankFullName=document.getElementById("fullName")
+        let message=document.getElementById("ispb")
         message.innerText = "Por favor verifique se digitou corretamente o nome do banco como no exemplo "
         bankCode.innerText=""
         bankFullName.innerText=""
@@ -69,17 +79,40 @@ async function findCep (){
   let cepToSearch= cepForm.cep
   let searchUrl= "https://brasilapi.com.br/api/cep/v2/"+cepToSearch
   await fetch(searchUrl).then((resp)=>{return resp.json()}).then((data)=>{ setCepResult(data) })
-  await showCepResult()
+        showCepResult()
 }
-  async function showCepResult(){
-    let streetResult=document.getElementById('street')
-    let ngbrhdResult=document.getElementById('neighborhood')          
-    let stateCodeResult=document.getElementById('stateCode')
-    streetResult.innerText= cepResult.street
-    ngbrhdResult.innerText= cepResult.neighborhood
-    stateCodeResult.innerText= cepResult.state
+   function showCepResult(){
+      if(cepResult.street!==undefined && cepResult.neighborhood!==undefined && cepResult.state!==undefined){
+        streetResult.innerText= cepResult.street
+        ngbrhdResult.innerText= cepResult.neighborhood
+        stateCodeResult.innerText= cepResult.state
+      }else{
+        streetResult.innerText= 'Verifique se digitou corretamente o cep e clique novamente no botão de pesquisa'
+        ngbrhdResult.innerText= ''
+        stateCodeResult.innerText= ''
+      }
   }
 
+  async function findDDD(){
+    let  dddTosearch = dddForm.numberDDD
+    let searchDddUrl= "https://brasilapi.com.br/api/ddd/v1/"+dddTosearch
+    await fetch (searchDddUrl).then((resp)=>{return resp.json()}).then((data)=>{ setDddResult(data)
+      setdddArrayResult(dddResult.cities)})
+    confirmDddResult()
+  }
+
+  function confirmDddResult(){
+    if(dddResult.state !== undefined && dddResult.cities !== undefined){
+        showDddResult()
+    }else{
+      dddStateCode.innerText="Por favor verifique se digitou o DDD Correto e tente novamenteclicando no botão pesquisar "
+    }
+
+  }
+
+  function showDddResult(){
+    dddStateCode.innerText= "Esse DDD pertence ao estado de: "+dddResult.state
+  }
 
 
   return (
@@ -111,7 +144,11 @@ async function findCep (){
             <div className='searchAreaContainer'>
               <label htmlFor='dddNumber'>Numero do DDD:</label>
               <input className='inputTxtStyle' name='numberDDD' type="text" id='dddNumber' placeholder='Exemplo: 11'onChange={dddEvent}></input>
-              <button className='buttonsStyle'>Pesquisar DDD</button>
+              <p id='stateDDDCode'></p>
+              <ul id='listCitiesCode'>
+            
+              </ul>
+              <button className='buttonsStyle' onClick={findDDD}>Pesquisar DDD</button>
             </div>
           </div>
         </section>
