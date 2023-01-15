@@ -9,7 +9,7 @@ function Menu (){
             <nav className='navContainer'>
                 <a href='#about' className='linkStyle'>Sobre</a>
                 <a href='#howWorks' className='linkStyle'>Instruções</a>
-                <a href='#Search' className='linkStyle'>Pesquisa</a>
+                <a href='#search' className='linkStyle'>Pesquisa</a>
                 <a href='#footerInfo' className='linkStyle'>Informações</a>
             </nav>
         </header>
