@@ -7,27 +7,32 @@
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .headerContainer{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display:  flex;
+  flex-direction: column;
   width: 100vw;
   background-color: var(--contrastColor);
   color: var(--fontColor);
 }
 
+.logoContainer{
+  display:  flex;
+  align-items: center;
+}
+
 .pageName,.logoImageStyle{
   margin: 8px 0px 10px 20px;
+  font-size: 1.8rem;
 }
 
 .navContainer{
   display: flex;
-  align-items: center;
   justify-content: space-evenly;
-  width: 100vw;
-  padding-bottom: 9px;
+  width: 100%;
+  padding:0px 0px;
 }
 
 .linkStyle{
@@ -40,9 +45,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
+  margin: 10% 0px;
   width: 100vw;
+}
 
+.titleSection{
+  font-size: 1.5rem;
 }
 
 .textContainer{
@@ -50,36 +58,60 @@
   flex-direction: column;
   width: 80%;
   margin: 20px 10%;
+  font-size: 1.1rem;
+}
+
+.txtIsntructionStyle{
+  margin-bottom: 20px;
 }
 
 .listStyle{
   margin: 15px 40px;
   list-style:disc;
+  font-size: 1.1rem;
 }
 
-.structionItem{
-  margin-bottom: 15px;
+.itemStyle{
+  margin: 15px 0px;
 }
 
 .btnContianerStyle{
-  margin-top: 30px;
-  width: 100%;
+  margin: 30px 0px;
+  width: 400px;
+  height: 370px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+  background: #0EA2E366;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .searchAreaContainer{
   display: flex;
   flex-direction:  column;
   margin-bottom: 25px;
-  width: 80vw;
+  font-size: 1.1rem;
+  width: 250px;
+}
+
+#topContainer{
+  margin-top: 25px;
+}
+
+.labelStyle{
+  margin: 5px 0px 5px -15px;
 }
 
 .inputTxtStyle{
-  height: 30px;
-  margin-bottom: 5px;
+  height: 35px;
+  padding: 9px;
+  margin:10px 0px;
+  font-size: 1rem;
 }
 
 .buttonsStyle{
@@ -89,5 +121,108 @@
   border: 1px solid var(--contrastColor);
   border-radius: 7px;
   font-weight: 800;
+  font-size: 1.1rem;
   margin-top: 8px;
+}
+
+.footersectionContainer{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  height: 40vh;
+  background-color: var(--contrastColor);
+  color: var(--fontColor);
+}
+
+.footerTitle{
+  margin-top: 30px;
+}
+
+.gridContainer{
+  display: grid;
+  grid-template:1fr / 1fr 1fr;
+  grid-auto-flow: column;
+  margin-top: 25px;
+}
+
+.linkArea{
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerLinkstyle{
+  text-decoration: none;
+  color: var(--fontColor);
+  margin:10px 0px;
+}
+
+@media screen and (min-width:720px){
+
+  .pageName{
+    font-size: 2.2rem;
+  }
+  .textContainer{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 20px 10%;
+    font-size: 1.4rem;
+  }
+
+  .titleSection{
+    font-size: 1.9rem;
+  }
+
+  .itemStyle{
+    font-size: 1.4rem;
+  }
+
+  .linkStyle{
+    text-decoration: none;
+    color: var(--fontColor);
+    font-weight: 600;
+    font-size: 1.4rem;
+  }
+
+  .searchAreaContainer{
+    display: flex;
+    flex-direction:  column;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    width: 360px;
+    align-items: center;
+  }
+
+.labelStyle{
+font-size: 1.4rem;
+}
+
+.inputTxtStyle{
+font-size: 1.3rem;
+width: 90%;
+}
+
+.buttonsStyle{
+font-size: 1.4rem;
+width: 90%;
+}
+
+
+  .footerTitle{
+    font-size: 2rem;
+  }
+
+  .footerLinkstyle{
+    text-decoration: none;
+    color: var(--fontColor);
+    margin:10px 0px;
+    font-size: 1.5rem;
+  }
+
+  .footerSubtitle{
+    font-size: 1.7rem;
+  }
+
+  
 }

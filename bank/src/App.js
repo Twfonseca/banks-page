@@ -3,6 +3,7 @@ import Menu from './components/Menu'
 import About from './components/About';
 import Instructions from './components/Instructions';
 import {useEffect, useState } from 'react';
+import MoreInfos from './components/MoreInfos';
 
 
 
@@ -17,7 +18,6 @@ function App() {
   const [banks, setBanks]=useState([])
   const [bankForm, setBankForm]=useState(bankModel)
   const [cepForm, setCepForm]=useState(cepModel)
-  const [cepResult, setCepResult]=useState({})
   let bankIspb= document.getElementById("ispb")
   let bankCode= document.getElementById("code")
   let bankFullName=document.getElementById("fullName")
@@ -63,23 +63,23 @@ const bankSearch = ()=>{
      }
   }
 
-async function findCep (){
+   function findCep (){
   let cepToSearch= cepForm.cep
   let searchUrl= "https://brasilapi.com.br/api/cep/v2/"+cepToSearch
-  await fetch(searchUrl).then((resp)=>{return resp.json()}).then((data)=>{ setCepResult(data) })
-        showCepResult()
+   fetch(searchUrl).then((resp)=>{return resp.json()}).then((data)=>{  
+    if(data.street!==undefined && data.neighborhood!==undefined && data.state!==undefined){
+      streetResult.innerText= data.street
+      ngbrhdResult.innerText= data.neighborhood
+      stateCodeResult.innerText= data.state
+    }else{
+      streetResult.innerText= 'Verifique se digitou corretamente o cep e clique novamente no botão de pesquisa'
+      ngbrhdResult.innerText= ''
+      stateCodeResult.innerText= ''
+    }
+
+
+  })
 }
-   function showCepResult(){
-      if(cepResult.street!==undefined && cepResult.neighborhood!==undefined && cepResult.state!==undefined){
-        streetResult.innerText= cepResult.street
-        ngbrhdResult.innerText= cepResult.neighborhood
-        stateCodeResult.innerText= cepResult.state
-      }else{
-        streetResult.innerText= 'Verifique se digitou corretamente o cep e clique novamente no botão de pesquisa'
-        ngbrhdResult.innerText= ''
-        stateCodeResult.innerText= ''
-      }
-  }
 
   return (
       <section>
@@ -89,8 +89,8 @@ async function findCep (){
         <section className='sectionContainer'>
           <h1 id='search' className='titleSection'>Pesquisa</h1>
           <div className='btnContianerStyle'>
-            <div className='searchAreaContainer'>
-              <label htmlFor='bankName'>Nome do banco:</label>
+            <div className='searchAreaContainer' id='topContainer'>
+              <label htmlFor='bankName'className='labelStyle'>Nome do banco:</label>
               <input className='inputTxtStyle' name='bank' type="text" id='bankName'placeholder='Exemplo: Banco do Brasil S.A' onChange={bankEvent}></input>
               <p id='ispb'></p>
               <p id='code'></p>
@@ -100,7 +100,7 @@ async function findCep (){
               
             </div>
             <div className='searchAreaContainer'>
-              <label htmlFor='cityName'>CEP:</label>
+              <label htmlFor='cityName'className='labelStyle'>CEP:</label>
               <input className='inputTxtStyle' name='cep' type="text" id='cepCode' placeholder='Exemplo:12345123'onChange={cepEvent}></input>
               <p id='street'></p>
               <p id='neighborhood'></p>
@@ -109,6 +109,7 @@ async function findCep (){
             </div>
           </div>
         </section>
+        <MoreInfos></MoreInfos>
       </section>
   );
 }
