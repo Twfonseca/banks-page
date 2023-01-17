@@ -76,8 +76,6 @@ const bankSearch = ()=>{
       ngbrhdResult.innerText= ''
       stateCodeResult.innerText= ''
     }
-
-
   })
 }
 
@@ -100,7 +98,7 @@ const bankSearch = ()=>{
               
             </div>
             <div className='searchAreaContainer'>
-              <label htmlFor='cityName'className='labelStyle'>CEP:</label>
+              <label htmlFor='cityName'className='labelStyle'>CEP         :</label>
               <input className='inputTxtStyle' name='cep' type="text" id='cepCode' placeholder='Exemplo:12345123'onChange={cepEvent}></input>
               <p id='street'></p>
               <p id='neighborhood'></p>

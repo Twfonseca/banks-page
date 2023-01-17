@@ -12,7 +12,7 @@ function Menu (){
                 <a href='#about' className='linkStyle'>Sobre</a>
                 <a href='#howWorks' className='linkStyle'>Instruções</a>
                 <a href='#search' className='linkStyle'>Pesquisa</a>
-                <a href='#footerInfo' className='linkStyle'>Informações</a>
+                <a href='#footerInfo' className='linkStyle'>Contatos</a>
             </nav>
         </header>
     )
